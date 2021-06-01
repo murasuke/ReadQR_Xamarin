@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="ReadQR.MainPage"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
+    <!--<StackLayout>
+        <Button Text="QRコード読み取り" 
+                Clicked="OnQR"
+                HorizontalOptions="Center" 
+                VerticalOptions="CenterAndExpand" />
+    </StackLayout>-->
+    <StackLayout Padding="10,10,10,10" Spacing="5" Orientation="Vertical">
+        <Label x:Name="label1" Text="First" FontSize="30" HeightRequest="100" BackgroundColor="#82DADA"/>
+        <Button Text="Touch Me" Clicked="pictureButton_Clicked" />
+        <Grid  >
+            <zxing:ZXingScannerView x:Name="zxing"  HeightRequest="500" OnScanResult="Handle_OnScanResult"/>
+            <zxing:ZXingDefaultOverlay  HeightRequest="400"  />
+        </Grid>
+    </StackLayout>
+</ContentPage>
