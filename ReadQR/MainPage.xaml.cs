@@ -24,19 +24,25 @@ namespace ReadQR
         //    Navigation.PushAsync(new QRScanPage());
         //}
 
-        public bool IsScaning { get; set; } = false;
+        //public bool IsScaning { get; set; } = false;
+
+        public string QRButtonText { 
+            get{ return zxing.IsAnalyzing ? "Stop Scanning" : "Start Scanning"; } 
+        }
+
         void pictureButton_Clicked(object sender, EventArgs e)
         {
-            IsScaning = !IsScaning;
-            zxing.IsScanning = IsScaning;
-            
+            zxing.IsScanning = !zxing.IsScanning;
+            zxing.IsAnalyzing = zxing.IsScanning;
+           
+            btnQR.Text = QRButtonText;
         }
         void Handle_OnScanResult(ZXing.Result result)
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
                 zxing.IsAnalyzing = false;  //読み取り停止
-                label1.Text = result.Text;
+                label2.Text = result.Text;
                 await DisplayAlert("通知", "次の値を読み取りました：" + result.Text, "OK");
                 zxing.IsAnalyzing = true;   //読み取り再開
             });
@@ -46,11 +52,14 @@ namespace ReadQR
         {
             base.OnAppearing();
             zxing.IsScanning = true;
+            btnQR.Text = QRButtonText;
         }
 
         protected override void OnDisappearing()
         {
             zxing.IsScanning = false;
+            btnQR.Text = QRButtonText;
+
             base.OnDisappearing();
         }
     }

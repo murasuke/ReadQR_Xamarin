@@ -3,18 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="ReadQR.MainPage"
              xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
-    <!--<StackLayout>
-        <Button Text="QRコード読み取り" 
-                Clicked="OnQR"
-                HorizontalOptions="Center" 
-                VerticalOptions="CenterAndExpand" />
-    </StackLayout>-->
     <StackLayout Padding="10,10,10,10" Spacing="5" Orientation="Vertical">
-        <Label x:Name="label1" Text="First" FontSize="30" HeightRequest="100" BackgroundColor="#82DADA"/>
-        <Button Text="Touch Me" Clicked="pictureButton_Clicked" />
-        <Grid  >
+        <Label x:Name="label1" Text="QR Reader App" FontSize="40" HeightRequest="100" BackgroundColor="#82DADA" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+        <Button x:Name="btnQR" Text="Stop Reading " Clicked="pictureButton_Clicked" />
+        <Grid>
             <zxing:ZXingScannerView x:Name="zxing"  HeightRequest="500" OnScanResult="Handle_OnScanResult"/>
             <zxing:ZXingDefaultOverlay  HeightRequest="400"  />
         </Grid>
+        <Label x:Name="label2" Text="Second" FontSize="20" HeightRequest="60" BackgroundColor="#82DADA"/>
+        <Label x:Name="label3" Text="Thead" FontSize="20" HeightRequest="60" BackgroundColor="#82DADA"/>
     </StackLayout>
 </ContentPage>
